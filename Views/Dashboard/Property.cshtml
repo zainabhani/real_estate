@@ -1,0 +1,459 @@
+﻿@model IEnumerable<Property>
+
+@{
+
+    ViewData["Title"] = "Home Page";
+    var clients = ViewBag.clients;
+}
+<head>
+    <style>
+        .wrapper {
+            padding: 0 20px 20px;
+        }
+
+        .dropdown-menu-bottom {
+            position: absolute;
+            bottom: 0;
+            padding-left: 6px;
+        }
+
+        .nav-item span {
+            color: #fff;
+            font-size: 14px;
+        }
+
+        .sidebar {
+            width: 150px;
+        }
+
+        .form-inline input {
+            border-radius: 10px;
+        }
+
+        .form-inline button {
+            font-size: 15px;
+            width: 130px;
+            height: 50px;
+            border: 2px solid #5d5076;
+            color: #111;
+            border-radius: 10px;
+            margin-right: 5px;
+        }
+
+            .form-inline button:hover {
+                color: #fff;
+                background-color: #5d5076;
+            }
+
+        .navbar-brand {
+            margin-left: 20px;
+        }
+
+        .card-header {
+            background-color: #5d5076;
+        }
+
+            .card-header span {
+                color: #ececec;
+            }
+
+            .card-header i {
+                color: #44014a;
+            }
+    </style>
+</head>
+<body>
+    <main>
+        <div class="container-fluid">
+            <div class="row">
+                <!-- content -->
+                <div class="col-sm p-3 min-vh-100">
+                    <div class="wrapper">
+                        <div class="container">
+                            <div class="row mt-4">
+                                <div class="col-sm-9">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <span class="card-title fs-6">Property</span>
+                                            
+                                            <!-- Button trigger modal Start -->
+                                            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#kt_modal_add_Property"><i class="fa fa-plus"></i> </button>
+                                            <!-- Modal add property -->
+                                            <div class="modal fade" id="kt_modal_add_Property" tabindex="-1" aria-hidden="true">
+                                                <!--begin::Modal dialog-->
+                                                <div class="modal-dialog modal-dialog-centered mw-650px">
+                                                    <!--begin::Modal content-->
+                                                    <div class="modal-content">
+                                                        <!--begin::Form-->
+                                                        
+                                                            <!--begin::Modal header-->
+                                                            <div class="modal-header" id="kt_modal_add_customer_header">
+                                                                <!--begin::Modal title-->
+                                                                <h2 class="fw-bold">New property</h2>
+                                                                <!--end::Modal title-->
+                                                                <!--begin::Close-->
+                                                                <div id="kt_modal_add_customer_close" class="btn btn-icon btn-sm btn-active-icon-primary">
+                                                                    <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+                                                                    <span class="svg-icon svg-icon-1">
+                                                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                            <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor" />
+                                                                            <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor" />
+                                                                        </svg>
+                                                                    </span>
+                                                                    <!--end::Svg Icon-->
+                                                                </div>
+                                                                <!--end::Close-->
+                                                            </div>
+                                                            <!--end::Modal header-->
+                                                            <!--begin::Modal body-->
+                                                            <div class="modal-body py-10 px-lg-17">
+                                                                <!--begin::Scroll-->
+                                                                <div class="scroll-y me-n7 pe-7" id="kt_modal_add_customer_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_add_customer_header" data-kt-scroll-wrappers="#kt_modal_add_customer_scroll" data-kt-scroll-offset="300px">
+                                                                    <!--begin::Input group-->
+
+
+                                                                    
+
+                                                                
+                                                                <form id="firstForm" asp-controller="Dashboard" asp-action="FirstAction" method="post">
+                                                                    <div class="input-box">
+
+                                                                        <div class="row input-field mt-2 mb-2">
+                                                                            <label for="client_id">Client</label>
+                                                                            <select name="client_id">
+                                                                                <option value="0"></option>
+                                                                                @foreach (var client in ViewBag.UniqueClients)
+                                                                                {
+                                                                                    <option value="@client.client_id">@client.name</option>
+                                                                                }
+                                                                            </select>
+                                                                        </div>
+                                                                        <div class="row input-field mb-2">
+                                                                            <label for="admin_id">Admin</label>
+                                                                            <select name="admin_id">
+                                                                                <!-- Corrected the typo here -->
+                                                                                <option value="0"></option>
+                                                                                @foreach (var admin in ViewBag.UniqueAdmins)
+                                                                                {
+                                                                                    <option value="@admin.admin_id">@admin.name</option>
+                                                                                }
+                                                                            </select>
+                                                                        </div>
+
+                                                                        <div class="row input-field mb-2">
+                                                                            <label for="p_type">Type</label>
+                                                                            <select name="p_type" id="p_type" onchange="showNextForm(this.value)">
+                                                                                <option value="0"></option>
+                                                                                <option value="house">House</option>
+                                                                                <option value="apartment">Apartment</option>
+                                                                            </select>
+                                                                        </div>
+                                                                        <div class="row input-field mb-2">
+                                                                            <label for="location">Location</label>
+                                                                            <input type="text" id="location" name="location" required>
+                                                                        </div>
+                                                                    </div>
+                                                                    <button type="submit" class="btn but mt-3" id="submitbu">Submit</button>
+                                                                   
+
+                                                                </form>
+
+                                                                
+
+
+                                                                </div>
+                                                                <!--end::Scroll-->
+                                                            </div>
+                                                            <!--end::Modal body-->
+                                                            <!--begin::Modal footer-->
+                                                            <div class="modal-footer flex-center">
+
+
+                                                                <!--end::Button-->
+                                                            </div>
+                                                            <!--end::Modal footer-->
+                                                        
+                                                        <!--end::Form-->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Button trigger modal end -->
+                                        </div>
+                                        <div class="card-body">
+                                            <table class="table table-hover">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">Property id</th>
+                                                        <th scope="col">Client id</th>
+                                                        <th scope="col">Admin id</th>
+                                                        <th scope="col">Type</th>
+                                                        <th scope="col">Add</th>
+                                                        <th scope="col">location</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @if (Model != null)
+                                                    {
+                                                        @foreach (var item in Model)
+                                                        {
+                                                            <tr>
+                                                                <td scope="row">@item.property_Id</td>
+                                                                <td>@item.client_Id</td>
+                                                                <td>@item.admin_id</td>
+                                                                <td>@item.p_type</td>
+                                                                <td>
+                                                                    @if (item.p_type == "house")
+                                                                    {
+                                                                        <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#kt_modal_add_House" data-property-id="@item.property_Id">
+                                                                            <i class="fa fa-plus"></i>
+                                                                        </button>
+                                                                    }
+                                                                    else if (item.p_type == "apartment")
+                                                                    {
+                                                                      <!-- <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#kt_modal_add_apartment" asp-route-id="@item.property_Id"><i class="fa fa-plus"></i> </button> --> 
+
+                                                                        <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#kt_modal_add_apartment" data-property-id="@item.property_Id">
+                                                                            <i class="fa fa-plus"></i>
+                                                                        </button>
+
+                                                                    }
+                                                                </td>
+                                                                <td>@item.location</td>
+
+                                                                <td><a asp-controller="Dashboard" asp-action="DeleteP" asp-route-id="@item.property_Id"><i class="fa fa-trash"></i></a></td>
+ 
+                                                            </tr>
+                                                        }
+                                                    }
+                                                    
+                                                    
+                                                    
+                                                </tbody>
+                                            </table>
+                                            <!-- Modal Add House -->
+                                            
+
+                                            <!-- Your modal HTML structure -->
+                                            <div class="modal fade" id="kt_modal_add_House" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Add House</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <!-- Your form goes here -->
+                                                            <form id="houseForm" asp-controller="Dashboard" asp-action="HouseAction">
+                                                                
+                                                                <input type="hidden" id="propertyIdInputHouse" name="property_Id" />
+                                                                <div class="input-box">
+                                                                    <div class="row input-field mt-2 mb-2">
+                                                                        <label for="house_state"></label>
+                                                                        <select name="house_state">
+                                                                            <option value="0"></option>
+                                                                            <option value="rent">Rent</option>
+                                                                            <option value="sell">Sell</option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="row input-field mb-2">
+                                                                        <label for="house_nu_room">How many rooms</label>
+                                                                        <input type="number" id="house_nu_room" name="house_nu_room" required>
+                                                                    </div>
+                                                                    <div class="row input-field mb-2">
+                                                                        <label for="house_price">Price</label>
+                                                                        <input type="number" id="house_price" name="house_price" required>
+                                                                    </div>
+
+
+                                                                    <div class="row input-field">
+                                                                        <button type="submit" class="btn but mt-3" id="submitbu">Submit</button>
+                                                                    </div>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                            <button type="button" class="btn btn-primary" onclick="submitHouseForm()">Save changes</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <script>
+                                                // JavaScript to handle button click
+                                                document.addEventListener('DOMContentLoaded', function () {
+                                                    var modalButtonHouse = document.querySelector('[data-bs-target="#kt_modal_add_House"]');
+                                                    var modalHouse = new bootstrap.Modal(document.getElementById('kt_modal_add_House'));
+
+                                                    modalButtonHouse.addEventListener('click', function () {
+                                                        var propertyIdHouse = modalButtonHouse.getAttribute('data-property-id');
+
+                                                        // Set the propertyId in your form inside the modal
+                                                        var propertyIdInputHouse = document.getElementById('propertyIdInputHouse');
+                                                        propertyIdInputHouse.value = propertyIdHouse;
+
+                                                        // Show the modal
+                                                        modalHouse.show();
+                                                    });
+                                                });
+
+                                                // Function to submit the form (you may need to adjust this based on your form structure)
+                                                function submitHouseForm() {
+                                                    var formHouse = document.getElementById('houseForm');
+                                                    formHouse.submit();
+                                                }
+                                            </script>
+
+                                            
+                                            <!-- Modal Add apartment  -->
+                                            
+                                            <div class="modal fade" id="kt_modal_add_apartment" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Add Apartment</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <!-- Your form goes here -->
+                                                            <form id="apartmentForm" asp-controller="Dashboard" asp-action="ApartmentAction">
+                                                                <!-- Other form fields -->
+                                                                <input type="hidden" id="propertyIdInput" name="property_Id" />
+                                                                <div class="input-box">
+                                                                    <div class="row input-field mt-2 mb-2">
+                                                                        <label for="apartment_state">For:</label>
+                                                                        <select name="apartment_state">
+                                                                            <option value="0"></option>
+                                                                            <option value="rent">Rent</option>
+                                                                            <option value="sell">Sell</option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="row input-field mb-2">
+                                                                        <label for="apartment_nu_room">How many rooms</label>
+                                                                        <input type="number" id="apartment_nu_room" name="apartment_nu_room" required>
+                                                                    </div>
+                                                                    <div class="row input-field mb-2">
+                                                                        <label for="apartment_price">Price</label>
+                                                                        <input type="number" id="apartment_price" name="apartment_price" required>
+                                                                    </div>
+
+
+                                                                    <div class="row input-field">
+                                                                        <button type="submit" class="btn but mt-3" id="submitbu">Submit</button>
+                                                                    </div>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                            <button type="button" class="btn btn-primary" onclick="submitApartmentForm()">Save changes</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <script>
+                                                // JavaScript to handle button click
+                                                document.addEventListener('DOMContentLoaded', function () {
+                                                    var modalButton = document.querySelector('[data-bs-target="#kt_modal_add_apartment"]');
+                                                    var modal = new bootstrap.Modal(document.getElementById('kt_modal_add_apartment'));
+
+                                                    modalButton.addEventListener('click', function () {
+                                                        var propertyId = modalButton.getAttribute('data-property-id');
+
+                                                        // Set the propertyId in your form inside the modal
+                                                        var propertyIdInput = document.getElementById('propertyIdInput');
+                                                        propertyIdInput.value = propertyId;
+
+                                                        // Show the modal
+                                                        modal.show();
+                                                    });
+                                                });
+
+                                                // Function to submit the form (you may need to adjust this based on your form structure)
+                                                function submitApartmentForm() {
+                                                    var form = document.getElementById('apartmentForm');
+                                                    form.submit();
+                                                }
+                                            </script>
+
+                                            
+                                            <!-- Button trigger modal end -->
+                                           
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row mt-4">
+                                <div class="col-sm-6">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <span class="card-title fs-6">Houses</span>
+                                         </div>
+                                         <div class="card-body">
+                                            <table class="table table-hover">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">House id</th>
+                                                        <th scope="col">How many room</th>
+                                                        <th scope="col">For:</th>
+                                                        <th scope="col">Price</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach (var item in ViewBag.House)
+                                                    {
+                                                        <tr>
+                                                            <td scope="row">@item.houses_id</td>
+                                                            <td>@item.house_nu_room</td>
+                                                            <td>@item.house_state</td>
+                                                            <td>@item.house_price</td>
+                                                        </tr>
+                                                    }
+                                                    
+                                                </tbody>
+                                            </table>
+                                         </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <span class="card-title fs-6">Apartments</span>
+                                        </div>
+                                        <div class="card-body">
+                                            <table class="table table-hover">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">Apartment id</th>
+                                                        <th scope="col">How many room</th>
+                                                        <th scope="col">For:</th>
+                                                        <th scope="col">Price</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach (var item in ViewBag.Apartment)
+                                                    {
+                                                        <tr>
+                                                            <td scope="row">@item.apartment_id</td>
+                                                            <td>@item.apartment_nu_room</td>
+                                                            <td>@item.apartment_state</td>
+                                                            <td>@item.apartment_price</td>
+                                                        </tr>
+                                                    }
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>

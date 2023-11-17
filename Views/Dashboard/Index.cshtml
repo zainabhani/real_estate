@@ -1,0 +1,321 @@
+﻿@model Client 
+
+@{
+
+    ViewData["Title"] = "Home Page";
+    var clients = ViewBag.clients;
+}
+<head>
+    <style>
+        .glass-container {
+            background-color: rgba(255, 255, 255, 0.1); /* Adjust the alpha channel to control transparency */
+            padding: 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(8px); /* Adjust the blur value as needed */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle shadow */
+        }
+        .wrapper {
+            padding: 0 20px 20px;
+        }
+
+        .dropdown-menu-bottom {
+            position: absolute;
+            bottom: 0;
+            padding-left: 6px;
+        }
+
+        .nav-item span {
+            color: #fff;
+            font-size: 14px;
+        }
+
+        .sidebar {
+            width: 150px;
+        }
+
+        .form-inline input {
+            border-radius: 10px;
+        }
+
+        .form-inline button {
+            font-size: 15px;
+            width: 130px;
+            height: 50px;
+            border: 2px solid #5d5076;
+            color: #111;
+            border-radius: 10px;
+            margin-right: 5px;
+        }
+
+        .form-inline button:hover {
+                color: #fff;
+                background-color: #5d5076;
+            }
+
+        .navbar-brand {
+            margin-left: 20px;
+        }
+
+        .card-header {
+            background-color: #5d5076;
+        }
+
+        .card-header span {
+                color: #ececec;
+            }
+
+            .card-header i {
+                color: #44014a;
+            }
+    </style>
+</head>
+<body>
+   
+    <main>
+        <div class="container-fluid">
+            <div class="row">
+                <!-- content -->
+                <div class="col-sm p-3 min-vh-100">
+                    <div class="wrapper">
+                        <div class="container">
+                            <div class="row mt-4">
+                                <div class="col-sm-9">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <span class="card-title fs-6">Clients</span>
+                                            <!-- Filter -->
+                                            <form class="form-inline d-flex px-3" method="get" asp-asp-controller="Dashboard" asp-action="Index">
+                                                <div class="form-group">
+                                                    
+                                                    <select class="form-control" name="selectedCity" id="selectedCity">
+                                                        <option value="">Select a City</option>
+                                                        @foreach (var city in ViewBag.UniqueCities)
+                                                        {
+                                                            <option value="@city">@city</option>
+                                                        }
+                                                    </select>
+                                                </div>
+                                                <button type="submit" class="btn">Apply Filter</button>
+                                            </form>
+                                            <!-- Button trigger modal Start -->
+                                            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#kt_modal_add_Product"><i class="fa fa-plus"></i> </button>
+                                            <!-- Modal add client -->
+                                            <div class="modal fade" id="kt_modal_add_Product" tabindex="-1" aria-hidden="true">
+                                                <!--begin::Modal dialog-->
+                                                <div class="modal-dialog modal-dialog-centered mw-650px">
+                                                    <!--begin::Modal content-->
+                                                    <div class="modal-content">
+                                                        <!--begin::Form-->
+                                                        <form class="form" method="post" id="kt_modal_add_customer_form" asp-action="NewUser">
+                                                            <!--begin::Modal header-->
+                                                            <div class="modal-header" id="kt_modal_add_customer_header">
+                                                                <!--begin::Modal title-->
+                                                                <h2 class="fw-bold">New Client</h2>
+                                                                <!--end::Modal title-->
+                                                                <!--begin::Close-->
+                                                                <div id="kt_modal_add_customer_close" class="btn btn-icon btn-sm btn-active-icon-primary">
+                                                                    <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+                                                                    <span class="svg-icon svg-icon-1">
+                                                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                            <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor" />
+                                                                            <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor" />
+                                                                        </svg>
+                                                                    </span>
+                                                                    <!--end::Svg Icon-->
+                                                                </div>
+                                                                <!--end::Close-->
+                                                            </div>
+                                                            <!--end::Modal header-->
+                                                            <!--begin::Modal body-->
+                                                            <div class="modal-body py-10 px-lg-17">
+                                                                <!--begin::Scroll-->
+                                                                <div class="scroll-y me-n7 pe-7" id="kt_modal_add_customer_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_add_customer_header" data-kt-scroll-wrappers="#kt_modal_add_customer_scroll" data-kt-scroll-offset="300px">
+                                                                    <!--begin::Input group-->
+
+                                                                    <form asp-controller="D" asp-action="NewUser" method="post">
+                                                                        <div class="input-box">
+                                                                            <div class="row input-field mt-2 mb-2">
+                                                                                <label for="username">Username</label>
+                                                                                <input type="text" id="username" name="username" required>
+                                                                            </div>
+                                                                            <div class="row input-field mb-2">
+                                                                                <label for="name">Name</label>
+                                                                                <input type="text" id="name" name="name" required>
+                                                                            </div>
+                                                                            <div class="row input-field mb-2">
+                                                                                <label for="email">Email</label>
+                                                                                <input type="text" id="email" name="email" required>
+                                                                            </div>
+                                                                            <div class="row input-field mb-2">
+                                                                                <label for="city">City</label>
+                                                                                <input type="text" id="city" name="city" required>
+                                                                            </div>
+                                                                            <div class="row input-field mb-2">
+                                                                                <label for="phone">Phone number</label>
+                                                                                <input type="text" id="phone" name="phone" required>
+                                                                            </div>
+                                                                            <div class="row input-field mb-2">
+                                                                                <label for="name">Passowred</label>
+                                                                                <input type="password" id="password" name="password" required>
+                                                                            </div>
+                                                                            <div class="row input-field">
+                                                                                <button type="submit" class="btn but mt-3" id="submitbu">Submit</button>
+                                                                            </div>
+                                                                        </div>
+                                                                    </form>
+
+
+
+
+
+
+
+
+
+                                                                </div>
+                                                                <!--end::Scroll-->
+                                                            </div>
+                                                            <!--end::Modal body-->
+                                                            <!--begin::Modal footer-->
+                                                            <div class="modal-footer flex-center">
+
+
+                                                                <!--end::Button-->
+                                                            </div>
+                                                            <!--end::Modal footer-->
+                                                        </form>
+                                                        <!--end::Form-->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Button trigger modal end -->
+                                            </div>
+                                        <div class="card-body">
+                                            <table class="table table-hover">
+                                                <thead>
+                                                <tr>
+                                                        <th scope="col">Client id</th>
+                                                        <th scope="col">Username</th>
+                                                        <th scope="col">Name</th>
+                                                        <th scope="col">City</th>
+                                                        <th scope="col">Email</th>
+                                                        <th scope="col">Phone</th>
+                                                        <th scope ="col">Password</th>
+                                                        <th scope="col"></th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @if (clients != null)
+                                                    {
+                                                        @foreach (var item in ViewBag.clients)
+                                                        {
+                                                            <tr>
+                                                                <td scope="row">@item.client_id</td>
+                                                                <td>@item.username</td>
+                                                                <td>@item.name</td>
+                                                                <td>@item.city</td>
+                                                                <td>@item.email</td>
+                                                                <td>@item.phone</td>
+                                                                <td>@item.password</td>
+                                                                <td>
+                                                                    <a asp-controller="Dashboard" asp-action="Delete" asp-route-id="@item.client_id"><i class="fa fa-trash"></i></a>
+                                                                    <a asp-controller="Dashboard" asp-action="Edit" asp-route-id="@item.client_id"><i class="fa fa-edit"></i></a>
+                                                                    
+                                                                </td>
+                                                            </tr>
+                                                        }
+                                                    }
+                                                    
+                                                </tbody>
+                                            </table>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                               
+                            </div>
+                            
+                            <div class="row mt-4">
+                                <div class="col-sm-6">
+                                    <div class="card">
+                                        <div class="card-header"><span class="card-title fs-6">Agreement</span></div>
+                                        <div class="card-body">
+                                            <table class="table table-responsive">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">Agreement id</th>
+                                                        <th scope="col">Property id</th>
+                                                        <th scope="col">parties</th>
+                                                        <th scope="col">Admin</th>
+                                                        <th scope="col">period</th>
+                                                        <th scope="col">Payment</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td scope="row">Agreement id</td>
+                                                        <td>Property id</td>
+                                                        <td>parties</td>
+                                                        <td>Admin</td>
+                                                        <td>period</td>
+                                                        <td>Payment</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <span class="card-title fs-6">Search by city</span>
+                                            <form class="form-inline d-flex px-3" method="post" asp-asp-controller="Dashboard" asp-action="Search">
+                                                <button type="submit" class="btn my-2 my-sm-0" data-bs-toggle="modal" data-bs-target="#kt_modal_search_clint_by_city">Search</button>
+                                                <input class="form-control mr-sm-2 mr-sm-2" type="search" name="s_city" placeholder="city" aria-label="Search">
+
+                                            </form>
+                                            </div>
+                                        <div class="card-body">
+                                            <table class="table table-responsive">
+                                                <thead>
+                                                    <tr>
+                                                        <td scope="col">client_id</td>
+                                                        <td scope="col">username</td>
+                                                        <td scope="col">name</td>
+                                                        <td scope="col">city</td>
+                                                        <td scope="col">email</td>
+                                                        <td scope="col">phone</td>
+                                                        <td scope="col">password</td>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @if (ViewBag.searchclient != null)
+                                                    {
+                                                        @foreach (var item in ViewBag.searchclient)
+                                                        {
+                                                            <tr>
+                                                                <td scope="row">@item.client_id</td>
+                                                                <td>@item.username</td>
+                                                                <td>@item.name</td>
+                                                                <td>@item.city</td>
+                                                                <td>@item.email</td>
+                                                                <td>@item.phone</td>
+                                                                <td>@item.password</td>
+                                                            </tr>
+                                                        }
+
+                                                    }
+                                                  
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>

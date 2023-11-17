@@ -1,0 +1,72 @@
+﻿@{
+    var searchResult = ViewBag.searchresult as List<real_estate.Models.Client>;
+}
+
+<head>
+    <!-- Include any head elements you need -->
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-light bg-dark justify-content-between">
+            <a class="navbar-brand text-light py-3 px-3">Logo</a>
+            <form class="form-inline d-flex px-3" method="post" asp-asp-controller="Dashboard" asp-action="Search">
+                <div class="form-group">
+                    <label for="searchString">Search:</label>
+                    <input type="text" name="searchString" class="form-control" />
+                </div>
+                <button type="submit" class="btn btn-primary">Search</button>
+            </form>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="card">
+                        <div class="card-header"></div>
+                        <div class="card-body">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Client id</th>
+                                        <th scope="col">Username</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">City</th>
+                                        <th scope="col">Email</th>
+                                        <th scope="col">Phone</th>
+                                        <th scope="col">Password</th>
+                                        <th scope="col"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if (searchResult != null && searchResult.Any())
+                                    {
+                                        @foreach (var item in searchResult)
+                                        {
+                                            <tr>
+                                                <td scope="row">@item.client_id</td>
+                                                <td>@item.username</td>
+                                                <td>@item.name</td>
+                                                <td>@item.city</td>
+                                                <td>@item.email</td>
+                                                <td>@item.phone</td>
+                                                <td>@item.password</td>
+                                            </tr>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <tr>
+                                            <td colspan="7">No results found.</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>

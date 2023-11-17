@@ -1,0 +1,207 @@
+﻿@model IEnumerable<Client>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<style>
+    * {
+        font-family: 'Poppins', 'sans-serif';
+    }
+
+    .wrapper {
+        background: #ececec;
+        padding: 0 20px 20px;
+    }
+
+    .main {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+    }
+
+    .side-image {
+        background-image: url(/Images/signup.jpg);
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        position: relative;
+        border-radius: 10px 0 0 10px;
+        box-shadow: 5px 5px 10px 1px rgba(0, 0, 0, 0.2);
+    }
+
+    .row {
+        width: 900px;
+        height: 550px;
+        border-radius: 10px;
+        background: #fff;
+    }
+
+    img {
+        width: 35px;
+        position: absolute;
+        top: 30px;
+        left: 30px;
+    }
+
+    .text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+    }
+
+    .right {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+    }
+
+    .input-box {
+        width: 330px;
+        box-sizing: border-box;
+    }
+
+        .input-box header {
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+    .input-field {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        padding: 0 20px 0 20px;
+    }
+
+    input {
+        height: 45px;
+        width: 100%;
+        background: transparent;
+        border: none;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+        outline: none;
+        margin-bottom: 20px;
+        color: #44014a;
+    }
+
+    .input-box .input-field label {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        pointer-events: none;
+        transition: .5s;
+    }
+
+    .input-field input:focus ~ label {
+        top: -10px;
+        font-size: 13px;
+    }
+
+    .input-field input:valid ~ label {
+        top: -10px;
+        font-size: 13px;
+        color: #5d5076;
+    }
+
+    .input-field button {
+        border-color: #44014a;
+        outline: #44014a;
+        background: #fff;
+        border-radius: 5px;
+        transition: .5s;
+    }
+
+        .input-field button:hover {
+            background-color: #5d5076;
+            color: #fff;
+        }
+
+    .signin a {
+        color: #44014a;
+    }
+
+</style>
+<div class="wrapper">
+    <div class="container main">
+        <div class="row">
+            <div class="col-sm-6 side-image">
+                <!--image logo-->
+                <img src="" alt="">
+            </div>
+            <div class="col-sm-6 right">
+                <form asp-controller="Home" asp-action="NewUser" method="post">
+                    <div class="input-box">
+                        <header>Create Acount</header>
+                        <div class="input-field mt-2 mb-2">
+                            <input type="text" id="username" name="username" required>
+                            <label for="username">Username</label>
+                        </div>
+                        <div class="input-field mb-2">
+                            <input type="text" id="name" name="name" required>
+                            <label for="name">Name</label>
+                        </div>
+                        <div class="input-field mb-2">
+                            <input type="text" id="email" name="email" required>
+                            <label for="email">Email</label>
+                        </div>
+                        <div class="input-field mb-2">
+                            <input type="text" id="phone" name="phone" required>
+                            <label for="phone">Phone number</label>
+                        </div>
+                        <div class="input-field mb-2">
+                            <input type="password" id="password" name="password" required>
+                            <label for="name">Passowred</label>
+                        </div>
+                        <div class="input-field">
+                            <button type="submit" class="btn but mt-3" id="submitbu">Submit</button>
+                        </div>
+                        <div class="signin mt-2">
+                            <span>Already have an account? <a href="#">Log in</a></span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<table class="table table-bordered mt-5">
+    <thead>
+        <tr>
+            <th>username</th>
+            <th>name</th>
+            <th>email</th>
+            <th>phone number</th>
+            <td class="colspan" >pruseure</td>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null)
+        {
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.username</td>
+                    <td>@item.name</td>
+                    <td>@item.email</td>
+                    <td>@item.phone</td>
+                    <td><a asp-action="Deleteuser" asp-route-id="@item.client_id">Delete</a></td>
+                    <td>Edit</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

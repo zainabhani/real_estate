@@ -1,0 +1,109 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<style>
+    * {
+        font-family: 'Poppins', 'sans-serif';
+    }
+
+    .wrapper {
+        background: #ececec;
+        padding: 0 20px 20px;
+    }
+
+    .main {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+    }
+
+    .side-image {
+        background-image: url("/images/villa.jpg");
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        position: relative;
+        border-radius: 10px 0 0 10px;
+        box-shadow: 5px 5px 10px 1px rgba(0, 0, 0, 0.2);
+    }
+
+    img {
+        width: 35px;
+        position: absolute;
+        top: 30px;
+        left: 30px;
+    }
+
+    .text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+    }
+
+    .right {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+    }
+
+    .info button {
+        border-color: #44014a;
+        outline: #44014a;
+        background: #fff;
+        border-radius: 5px;
+        transition: .5s;
+    }
+
+        .info button:hover {
+            background-color: #5d5076;
+            color: #fff;
+        }
+</style>
+<main class="wrapper">
+    <div class="container">
+        <div class="row pt-5">
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="row">
+                        <div class="col-sm-6 side-image"></div>
+                        <div class="col-sm-6 right">
+                            <div class="info">
+                                <h4>property name</h4>
+                                <p>here write brife summery about the property</p>
+                                <ul>
+                                    <li>first feature</li>
+                                    <li>second feature</li>
+                                </ul>
+                                <h5>$price</h5>
+                                <button href="" class="btn">buy now</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="row">
+                        <div class="col-sm-6 side-image"></div>
+                        <div class="col-sm-6 right">
+                            <div class="info">
+                                <h4>property name</h4>
+                                <p>here write brife summery about the property</p>
+                                <ul>
+                                    <li>first feature</li>
+                                    <li>second feature</li>
+                                </ul>
+                                <h5>$price</h5>
+                                <button href="" class="btn">buy now</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

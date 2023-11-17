@@ -1,0 +1,98 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<base href="" />
+	<title>DashBaord training at Tuwaiq Training Camp</title>
+	<meta charset="utf-8" />
+	<meta name="description" content="The most advanced Bootstrap Admin Theme on Themeforest trusted by 100,000 beginners and professionals. Multi-demo, Dark Mode, RTL support and complete React, Angular, Vue, Asp.Net Core, Blazor, Django, Flask & Laravel versions. Grab your copy now and get life-time updates for free." />
+	<meta name="keywords" content="metronic, bootstrap, bootstrap 5, angular, VueJs, React, Asp.Net Core, Blazor, Django, Flask & Laravel starter kits, admin themes, web design, figma, web development, free templates, free admin themes, bootstrap theme, bootstrap template, bootstrap dashboard, bootstrap dak mode, bootstrap button, bootstrap datepicker, bootstrap timepicker, fullcalendar, datatables, flaticon" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta property="og:locale" content="en_US" />
+	<meta property="og:type" content="article" />
+	<meta property="og:title" content="DashBoard  at Tuwaiq Training Camp" />
+	<meta property="og:url" content="https://keenthemes.com/metronic" />
+	<meta property="og:site_name" content="Keenthemes | Metronic" />
+	<link rel="canonical" href="https://preview.keenthemes.com/metronic8" />
+	<link rel="stylesheet" type="text/css" href="~/css/custom.css">
+
+	<link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/512/634/634394.png?w=740&t=st=1691009018~exp=1691009618~hmac=37c2afc6d1411a956f80ab79897617cc926d1dbf5748a08ec14df8377911311d" />
+	<!--begin:<link rel="shortcut icon" href="assets/media/logos/favicon.ico" />:Fonts-->
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700" />
+	<!--end::Fonts-->
+	<!--begin::Global Stylesheets Bundle(used by all pages)-->
+	<link href="~/assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
+	<link href="~/assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
+	<!--end::Global Stylesheets Bundle-->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-light bg-dark justify-content-between">
+            <a class="navbar-brand text-light py-3 px-3">Logo</a>
+            <form class="form-inline d-flex px-3">
+                <button class="btn my-2 my-sm-0" type="submit">Search</button>
+                <input class="form-control mr-sm-2 mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            </form>
+        </nav>
+
+    </header>
+    <div class="">
+        <div class="row">
+            <div class="d-flex flex-column bg-dark justify-center-between col-sm-auto min-vh-100">
+                <div class="sidebar">
+                    <ul class="nav nav-pills align-item-center flex-column pt-3 mt-2 mt-sm-0" id="menu">
+                        <li class="nav-item">
+                        <li class="nav-item">
+                            <a href="/Dashboard/Index" class="nav-link text-light py-2 px-2" aria-current="page">
+                                <i class="fa fa-house"></i>
+                                <span class="ms-2">Dashboard</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/Dashboard/Property" class="nav-link text-light py-2 px-2" aria-current="page">
+                                <i class="fa-solid fa-city"></i>
+                                <span class="ms-2">Property</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="" class="nav-link text-light py-2 px-2" aria-current="page">
+                                <i class="fa-solid fa-handshake"></i>
+                                <span class="ms-2">Agreement</span>
+                            </a>
+                        </li>
+                        </li>
+                    </ul>
+                    <div>
+                        <div class="dropdown open dropdown-menu-bottom">
+                            <button class="btn text-light border-none outline-none dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="text-light">user</span>
+                            </button>
+                            <div class="dropdown-menu py-3 px-1" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="#">Profile</a>
+                                <a class="dropdown-item" href="#">Setting</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm p-3 min-vh-100">
+                <main role="main" class="pb-3">
+                    @RenderBody()
+                </main>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

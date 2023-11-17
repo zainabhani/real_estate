@@ -1,0 +1,63 @@
+﻿@model Client
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<body>
+    <main>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm p-3 min-vh-100">
+                    <div class="wrapper">
+                        <div class="container">
+                            <div class="row mt-4">
+                                <div class="col-sm-9">
+                                    <div class="card mr-4 mt-4">
+                                        <div card-header><span>Update client information</span></div>
+                                        <div class="card-body">
+                                            <form asp-controller="Dashboard" asp-action="Update" method="post">
+                                                <input type="hidden" name="client_id" asp-for="@Model.client_id" required />
+                                                <div class="input-box">
+                                                    <div class="row input-field mt-2 mb-2">
+                                                        <label for="username">Username</label>
+                                                        <input type="text" name="username" asp-for="@Model.username" required />
+                                                    </div>
+                                                    <div class="row input-field mt-2 mb-2">
+                                                        <label for="name">Name</label>
+                                                        <input type="text" name="name" asp-for="@Model.name" required />
+                                                    </div>
+                                                    <div class="row input-field mt-2 mb-2">
+                                                        <label for="city">City</label>
+                                                        <input type="text" name="city" asp-for="@Model.city" required />
+                                                    </div>
+                                                    <div class="row input-field mt-2 mb-2">
+                                                        <label for="email">Email</label>
+                                                        <input type="email" name="email" asp-for="@Model.email" required />
+                                                    </div>
+                                                    <div class="row input-field mt-2 mb-2">
+                                                        <label for="phone">Phone</label>
+                                                        <input type="number" name="phone" asp-for="@Model.phone" required />
+                                                    </div>
+                                                    <div class="row input-field mt-2 mb-2">
+                                                        <label for="username">Password</label>
+                                                        <input type="password" name="password" asp-for="@Model.password" required />
+                                                    </div>
+                                                    <div class="row input-field">
+                                                        <button type="submit" class="btn but mt-3" id="submitbu">Submit</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+</body>
+

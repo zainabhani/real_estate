@@ -1,0 +1,84 @@
+.wrapper {
+    padding: 0 20px 20px;
+}
+
+.dropdown-menu-bottom {
+    position: absolute;
+    bottom: 0;
+    padding-left: 6px;
+}
+
+.nav-item span {
+    color: #fff;
+    font-size: 14px;
+}
+
+.sidebar {
+    width: 200px;
+}
+
+.form-inline input {
+    border-radius: 10px;
+}
+
+.form-inline button {
+    border: 2px solid #fff;
+    color: #fff;
+    border-radius: 10px;
+    margin-right: 5px;
+}
+
+.form-inline button:hover {
+        color: #fff;
+        background-color: #44014a;
+    }
+
+.navbar-brand {
+    margin-left: 20px;
+}
+
+.card-header {
+    background-color: #5d5076;
+}
+
+.card-header span {
+        color: #111;
+    }
+
+.card-header i {
+        color: #5d5076;
+    }
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+body {
+    background-image: url('/Images/white-textured-concrete.jpg'); /* Replace with your background image */
+    background-size: cover;
+    margin-bottom: 60px;
+}
+
+.glass-container {
+    background-color: rgba(255, 255, 255, 0.1); /* Adjust the alpha channel to control transparency */
+    padding: 20px;
+    border-radius: 10px;
+    backdrop-filter: blur(8px); /* Adjust the blur value as needed */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle shadow */
+    
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+
